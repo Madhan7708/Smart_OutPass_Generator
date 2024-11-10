@@ -24,7 +24,7 @@ $result2 = mysqli_query($conn, $query2);
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+
     <title>Smart Outpass Management System - Security Dashboard</title>
     <!-- Custom CSS -->
     <link href="assets/libs/flot/css/float-chart.css" rel="stylesheet">
