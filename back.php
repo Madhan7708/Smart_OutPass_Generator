@@ -1,27 +1,38 @@
 <?php
 include("db.php");
-
-if (isset($_POST['id']) && isset($_POST['action'])) {
-    $id = $_POST['id'];
-    $action = $_POST['action'];
-    $status = 0;
-
-    // Set the status based on the action
-    if ($action == 'approve') {
-        $status = 2; // Approved
-    } elseif ($action == 'reject') {
-        $status = 5; // Rejected
+if (isset($_POST['approve_user'])) {
+    $apid = mysqli_real_escape_string($conn, $_POST['ids']);
+    $sql = "UPDATE leaveapply SET status ='2' WHERE id='$apid'";
+    $res = mysqli_query($conn, $sql);
+    if ($res) {
+        mysqli_commit($conn);
+        echo json_encode(['status' => 200]);
     }
-
-    // Update the status of the leave application
-    $query = "UPDATE leaveapply SET status = '$status' WHERE id = '$id'";
-
-    if (mysqli_query($conn, $query)) {
-        echo "Success"; // Return success message
-    } else {
-        echo "Error: " . mysqli_error($conn);
+    else {
+        $res = [
+            'status' => 500,
+            'message' => 'Details Not Deleted'
+        ];
+        echo json_encode($res);
+        return;
     }
+}
 
-    mysqli_close($conn);
+if (isset($_POST['reject_user'])) {
+    $apid = mysqli_real_escape_string($conn, $_POST['ids']);
+    $sql = "UPDATE leaveapply SET status ='5' WHERE id='$apid'";
+    $res = mysqli_query($conn, $sql);
+    if ($res) {
+        mysqli_commit($conn);
+        echo json_encode(['status' => 200]);
+    }
+    else {
+        $res = [
+            'status' => 500,
+            'message' => 'Details Not Deleted'
+        ];
+        echo json_encode($res);
+        return;
+    }
 }
 ?>
