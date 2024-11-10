@@ -140,7 +140,7 @@ $result2 = mysqli_query($conn, $query2);
 
                                 <!-- Tab panes -->
                                 <div class="tab-content tabcontent-border">
-                                    <!-- Completed Work Tab -->
+                                    <!-- Pending Work Tab -->
                                     <div class="tab-pane active" id="pending" role="tabpanel">
                                         <div class="p-20">
                                             <div class="table-responsive">
@@ -221,8 +221,10 @@ $result2 = mysqli_query($conn, $query2);
                                                                         </div>
 
                                                                         <td>
-                                                                            <button type="button" value="<?php echo $row['id']; ?>" class="btn btn-primary userapprove">Approve</button>
-                                                                            <button type="button" value="<?php echo $row['id']; ?>" class="btn btn-danger userreject">Reject</button>
+                                                                        <center>
+                                                                            <button type="button" value="<?php echo $row['id']; ?>" class="btn btn-success userapprove"><i class="fas fa-check"></i></button>
+                                                                            <button type="button" value="<?php echo $row['id']; ?>" class="btn btn-danger userreject"><i class="fas fa-times"></i></button>
+                                                                            </center>
                                                                         </td>
                                                                     </tr>
                                                                 <?php
@@ -496,6 +498,28 @@ $result2 = mysqli_query($conn, $query2);
 
         });
 
+        $(function() {
+            // Initialize the tooltip
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // You can also set options manually if needed
+            $('.userreject').tooltip({
+                placement: 'top',
+                title: 'Reject'
+            });
+        });
+
+        $(function() {
+            // Initialize the tooltip
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // You can also set options manually if needed
+            $('.userapprove').tooltip({
+                placement: 'top',
+                title: 'Accept'
+            });
+        });
+
         $(document).on('click', '.userapprove', function(e) {
             e.preventDefault();
             var id = $(this).val();
@@ -555,7 +579,7 @@ $result2 = mysqli_query($conn, $query2);
                         } else {
                             Swal.fire({
                                 title: "Success",
-                                text: "User Approved",
+                                text: "User Rejected",
                                 icon: "success"
                             });
                             $('#addnewtask').load(location.href + " #addnewtask");
