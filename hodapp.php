@@ -1,38 +1,4 @@
-<?php
-include ('db.php');
-session_start();
-if (!isset($_SESSION['reg_no'])) {
-    header("Location: login.php");
-    exit();
-}
-$reg_no = $_SESSION['reg_no'];
-$query = "
-    SELECT login.user_id, student.name, student.dept, student.year,student.dob, student.mentorname,student.fname,student.fmobileno,student.smobileno
-    FROM login
-    JOIN student ON login.user_id = student.user_id
-    WHERE login.user_id = '$reg_no'
-";
-$result = mysqli_query($conn, $query);
 
-if ($result && mysqli_num_rows($result) > 0) {
-    $user_data = mysqli_fetch_assoc($result);
-    $name = $user_data['name'];
-    $dept = $user_data['dept'];
-    $year = $user_data['year'];
-    $dob = $user_data['dob'];
-    $mentorn = $user_data['mentorname'];
-    $fname = $user_data['fname'];
-    $fmobileno = $user_data['fmobileno'];
-    $smobileno = $user_data['smobileno'];
-
-
-} else {
-    echo "<script>alert('Unable to retrieve user details.');</script>";
-    $name = "N/A";
-    $department = "N/A";
-    $year = "N/A";
-}
-?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -49,60 +15,49 @@ if ($result && mysqli_num_rows($result) > 0) {
     <!-- Custom CSS -->
     <link href="assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <!-- Option 1: Include in HTML -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+     <!-- Option 1: Include in HTML -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link href="dist/css/style.min.css" rel="stylesheet">
-
+   
 </head>
 
 <body>
-
+   
     <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
             <div class="lds-pos"></div>
         </div>
     </div>
-
+   
     <div id="main-wrapper">
-
+        
         <header class="topbar" data-navbarbg="skin5">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+            <nav class="navbar top-navbar navbar-expand-md ">
                 <div class="navbar-header" data-logobg="skin5">
                     <!-- This is for the sidebar toggle which is visible on mobile only -->
                     <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-
-                    <!-- ============================================================== -->
-                    <!-- End Logo -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- Toggle which is visible on mobile only -->
-                    <!-- ============================================================== -->
+                    
                     <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
                 </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
+         
                 <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-
+                    
+                    
                 </div>
             </nav>
         </header>
-
+        
         <aside class="left-sidebar" data-sidebarbg="skin5">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.php" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">My Profile</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="apply.php" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Apply Outpass</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="logout.php" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Log Out</span></a></li>
-
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="hodapp.php" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="hod.php" aria-expanded="false"><i class="mdi mdi-border-outside"></i><span class="hide-menu">Hod Approval</span></a></li>
+                        
+                        
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -119,9 +74,9 @@ if ($result && mysqli_num_rows($result) > 0) {
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-            <div class="page-breadcrumb">
+             <div class="page-breadcrumb">
                 <div class="row">
-
+                    
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -131,53 +86,44 @@ if ($result && mysqli_num_rows($result) > 0) {
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-            <div class="card" style="padding: 20px; max-width: 500px; margin: 20px auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: #f9f9f9;">
-    <div class="card-body" style="text-align: center;">
-        <h5 class="card-title" style="font-size: 24px; font-weight: bold; color: #4a4a4a; margin-bottom: 20px;">My Profile Information</h5>
-        <table style="width: 100%; font-size: 16px;">
-            <tbody>
-                <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Reg.No:</td>
-                    <td style="padding: 10px;"><?php echo $reg_no ?></td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Name:</td>
-                    <td style="padding: 10px;"><?php echo $name ?></td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Date Of Birth:</td>
-                    <td style="padding: 10px;"><?php echo $dob ?></td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Department:</td>
-                    <td style="padding: 10px;"><?php echo $dept ?></td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Mentor Name:</td>
-                    <td style="padding: 10px;"><?php echo $mentorn ?></td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Father Name:</td>
-                    <td style="padding: 10px;"><?php echo $fname ?></td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Father No:</td>
-                    <td style="padding: 10px;"><?php echo $fmobileno ?></td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Student Number:</td>
-                    <td style="padding: 10px;"><?php echo $smobileno ?></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                <!-- ============================================================== -->
+                <!-- Sales Cards  -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-md-3 col-lg-3 col-sm-6">
+                        <div class="card card-hover">
+                            <div class="box bg-cyan text-center">
+                                <h1 class="font-light text-white"><i class="bi bi-person-circle"></i></h1>
+                                <h5 class="text-white">Name</h5>
+                                <h5 class="text-white">ZZZZ</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-md-3 col-lg-3 col-sm-6">
+                        <div class="card card-hover">
+                            <div class="box bg-success text-center">
+                                <h1 class="font-light text-white"><i class="mdi mdi-chart-areaspline"></i></h1>
+                                <h5 class="text-white">Faculty_Id</h5>
+                                <h5 class="text-white">555555</h5>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Column -->
+                    <div class="col-md-3 col-lg-3 col-sm-6">
+                        <div class="card card-hover">
+                            <div class="box bg-warning text-center">
+                                <h1 class="font-light text-white"><i class="mdi mdi-collage"></i></h1>
+                                <h5 class="text-white">Head Of Department</h5>
+                                <h5 class="text-white">Computer Science and Business Systems</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-
-
-
-
-
+                
+              
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -185,7 +131,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            
+           
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
