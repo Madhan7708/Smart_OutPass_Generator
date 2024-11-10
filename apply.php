@@ -425,7 +425,7 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
 
             $.ajax({
                 type: "POST",
-                url: "backend.php",
+                url: "back.php",
                 data: formData,
                 processData: false,
                 contentType: false,
