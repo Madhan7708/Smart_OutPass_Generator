@@ -25,8 +25,7 @@ $result2 = mysqli_query($conn, $query2);
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
-    <!-- Custom CSS -->
+    <title>Smart Outpass Management System - Security Dashboard</title>
     <link href="assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <!-- Custom CSS -->
     <!-- Option 1: Include in HTML -->
