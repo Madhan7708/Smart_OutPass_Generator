@@ -317,7 +317,7 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
 
         </div>
         <footer class="footer text-center">
-            <p>the mic out</p>
+            <p>Developed and Maintained by Technology Innovation Hub</p>
         </footer>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
@@ -419,6 +419,7 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
             e.preventDefault();
             var formData = new FormData(this);
             formData.append("save_newuser", true);
+            formData.append("userid", $('#user_id').val());
             formData.append("outPass", $('#outPass').val());
             formData.append("time", $('#time').val());
             formData.append("reason", $('#reason').val());
