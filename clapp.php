@@ -1,8 +1,14 @@
 <?php
 include("db.php");
+//Pending tab code
 $query = "SELECT student.name,student.user_id, leaveapply.* from student JOIN leaveapply ON student.user_id=leaveapply.user_id WHERE status = '1' ";
-
 $result = mysqli_query($conn, $query);
+
+$query1 = "SELECT student.name,student.user_id, leaveapply.* from student JOIN leaveapply ON student.user_id=leaveapply.user_id WHERE status = '2' ";
+$result1 = mysqli_query($conn, $query1);
+
+$query2 = "SELECT student.name,student.user_id, leaveapply.* from student JOIN leaveapply ON student.user_id=leaveapply.user_id WHERE status = '4' ";
+$result2 = mysqli_query($conn, $query2);
 
 
 ?>
@@ -112,121 +118,314 @@ $result = mysqli_query($conn, $query);
 
                         <div class="card">
                             <div class="card-body" style="padding: 10px;">
-                                <div class="table-responsive">
-                                    <!--id:addnewtask-->
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#pending" role="tab">
+                                            <i class="mdi mdi-book-open"></i>Pending
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#approval" role="tab">
+                                            <i class="mdi mdi-book-open"></i>Approval
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#out" role="tab">
+                                            <i class="mdi mdi-book-open"></i>Out
+                                        </a>
+                                    </li>
+                                </ul>
 
+                                <!-- Tab panes -->
+                                <div class="tab-content tabcontent-border">
+                                    <!-- Completed Work Tab -->
+                                    <div class="tab-pane active" id="pending" role="tabpanel">
+                                        <div class="p-20">
+                                            <div class="table-responsive">
+                                                <div class="card">
+                                                    <div class="card-body" style="padding: 10px;">
+                                                        <table id="addnewtask" class="table table-striped table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>S.No</h5>
+                                                                    </th>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>Reg.No</h5>
+                                                                    </th>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>Name</h5>
+                                                                    </th>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>OutPass Details</h5>
+                                                                    </th>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>Action</h5>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                $s = 1;
+                                                                while ($row = mysqli_fetch_array($result)) {
+                                                                ?>
+                                                                    <tr>
+                                                                        <td><?php echo $s; ?></td>
+                                                                        <td><?php echo $row['user_id']; ?></td>
+                                                                        <td><?php echo $row['name']; ?></td>
+                                                                        <td class="text-center">
+                                                                            <button type="button" class="btn viewcomplaint" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" style="font-size: 25px;">
+                                                                                <i class="fas fa-eye"></i>
+                                                                            </button>
+                                                                        </td>
 
-                                    <br>
-                                    <table id="addnewtask" class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-
-                                                <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;"><b>
-                                                        <h5>S.No</h5>
-                                                    </b></th>
-                                                <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;"><b>
-                                                        <h5>Reg.No</h5>
-                                                    </b></th>
-                                                <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;"><b>
-                                                        <h5>Name</h5>
-                                                    </b></th>
-                                                <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;"><b>
-                                                        <h5>OutPass Details</h5>
-                                                    </b></th>
-                                                <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;"><b>
-                                                        <h5>Action</h5>
-                                                    </b></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $s = 1;
-                                            while ($row = mysqli_fetch_array($result)) {
-
-                                            ?>
-                                                <tr>
-                                                    <td><?php echo $s; ?></td>
-                                                    <td><?php echo  $row['user_id']; ?></td>
-                                                    <td><?php echo  $row['name']; ?></td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn viewcomplaint" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" style="font-size: 25px;">
-                                                            <i class="fas fa-eye"></i>
-                                                        </button>
-                                                    </td>
-
-                                                    <div class="modal fade" id="<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="complaintDetailsModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                                            <div class="modal-content" style="border-radius: 8px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); background-color: #f9f9f9;">
-
-                                                                <!-- Modal Header with bold title and cleaner button -->
-                                                                <div class="modal-header" style="background-color: #007bff; color: white; border-top-left-radius: 8px; border-top-right-radius: 8px; padding: 15px;">
-                                                                    <h5 class="modal-title" id="complaintDetailsModalLabel" style="font-weight: 700; font-size: 1.4em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                                                                        📋 Outpass Details
-                                                                    </h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; font-size: 1.2em;">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-
-                                                                <!-- Modal Body with reduced padding -->
-                                                                <div class="modal-body" style="padding: 15px; font-size: 1.1em; color: #333; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-
-                                                                    <!-- Complaint Info Section with minimized spacing -->
-                                                                    <ol class="list-group list-group-numbered" style="margin-bottom: 0;">
-                                                                        <li class="list-group-item d-flex justify-content-between align-items-start" style="padding: 10px; background-color: #fff;">
-                                                                            <div class="ms-2 me-auto">
-                                                                                <div class="fw-bold" style="font-size: 1.2em; font-weight: 600; color: #007bff;">Category Of Pass</div>
-                                                                                <b><?php echo $row['category']; ?></b>
+                                                                        <!-- Modal for Outpass Details -->
+                                                                        <div class="modal fade" id="<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="complaintDetailsModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                                                                <div class="modal-content" style="border-radius: 8px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); background-color: #f9f9f9;">
+                                                                                    <div class="modal-header" style="background-color: #007bff; color: white; padding: 15px;">
+                                                                                        <h5 class="modal-title" id="complaintDetailsModalLabel" style="font-weight: 700;">📋 Outpass Details</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body" style="padding: 15px; color: #333;">
+                                                                                        <ol class="list-group list-group-numbered">
+                                                                                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                                                                <div class="ms-2 me-auto">
+                                                                                                    <div class="fw-bold" style="color: #007bff;">Category Of Pass</div>
+                                                                                                    <b><?php echo $row['category']; ?></b>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                                                                <div class="ms-2 me-auto">
+                                                                                                    <div class="fw-bold" style="color: #007bff;">Date</div>
+                                                                                                    <b><?php echo $row['date']; ?></b>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                                                                <div class="ms-2 me-auto">
+                                                                                                    <div class="fw-bold" style="color: #007bff;">Reason For Leaving College</div>
+                                                                                                    <b><?php echo $row['reason']; ?></b>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                        </ol>
+                                                                                    </div>
+                                                                                    <div class="modal-footer" style="justify-content: center;">
+                                                                                        <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Close</button>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                        </li>
-                                                                        <li class="list-group-item d-flex justify-content-between align-items-start" style="padding: 10px; background-color: #fff;">
-                                                                            <div class="ms-2 me-auto">
-                                                                                <div class="fw-bold" style="font-size: 1.2em; font-weight: 600; color: #007bff;">Date</div>
-                                                                                <b><?php echo $row['date']; ?></b>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="list-group-item d-flex justify-content-between align-items-start" style="padding: 10px; background-color: #fff;">
-                                                                            <div class="ms-2 me-auto">
-                                                                                <div class="fw-bold" style="font-size: 1.2em; font-weight: 600; color: #007bff;">Reason For leave College</div>
-                                                                                <b><?php echo $row['reason']; ?></b>
-                                                                            </div>
-                                                                        </li>
+                                                                        </div>
 
-
-
-
-                                                                    </ol>
-                                                                </div>
-
-                                                                <!-- Modal Footer with reduced padding -->
-                                                                <div class="modal-footer" style="border-top: none; justify-content: center; padding: 10px;">
-                                                                    <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" style="border-radius: 25px; padding: 10px 30px; font-size: 1.1em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                                                                        Close
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                                        <td>
+                                                                            <button type="button" value="<?php echo $row['id']; ?>" class="btn btn-primary userapprove">Approve</button>
+                                                                            <button type="button" value="<?php echo $row['id']; ?>" class="btn btn-danger userreject">Reject</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                <?php
+                                                                    $s++;
+                                                                };
+                                                                ?>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
-                                                    <td>
-                                                        <button type="button" value="<?php echo $row['id']; ?>" class="btn btn-primary userapprove">Approve</button>
-                                                        <button type="button" value="<?php echo $row['id']; ?>"
-                                                            class="btn btn-danger userreject">Reject</button>
-                                                    </td>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                                </tr>
-                                            <?php
-                                                $s++;
-                                            };
-                                            ?>
-                                        </tbody>
+                                    <!-- Approval Tab -->
+                                    <div class="tab-pane" id="approval" role="tabpanel">
+                                        <div class="p-20">
+                                            <div class="table-responsive">
+                                                <div class="card">
+                                                    <div class="card-body" style="padding: 10px;">
+                                                        <table id="addtask" class="table table-striped table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>S.No</h5>
+                                                                    </th>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>Reg.No</h5>
+                                                                    </th>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>Name</h5>
+                                                                    </th>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>OutPass Details</h5>
+                                                                    </th>
+                                                                    
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                $s = 1;
+                                                                while ($row = mysqli_fetch_array($result1)) {
+                                                                ?>
+                                                                    <tr>
+                                                                        <td><?php echo $s; ?></td>
+                                                                        <td><?php echo $row['user_id']; ?></td>
+                                                                        <td><?php echo $row['name']; ?></td>
+                                                                        <td class="text-center">
+                                                                            <button type="button" class="btn viewcomplaint" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" style="font-size: 25px;">
+                                                                                <i class="fas fa-eye"></i>
+                                                                            </button>
+                                                                        </td>
 
+                                                                        <!-- Modal for Outpass Details -->
+                                                                        <div class="modal fade" id="<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="complaintDetailsModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                                                                <div class="modal-content" style="border-radius: 8px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); background-color: #f9f9f9;">
+                                                                                    <div class="modal-header" style="background-color: #007bff; color: white; padding: 15px;">
+                                                                                        <h5 class="modal-title" id="complaintDetailsModalLabel" style="font-weight: 700;">📋 Outpass Details</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body" style="padding: 15px; color: #333;">
+                                                                                        <ol class="list-group list-group-numbered">
+                                                                                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                                                                <div class="ms-2 me-auto">
+                                                                                                    <div class="fw-bold" style="color: #007bff;">Category Of Pass</div>
+                                                                                                    <b><?php echo $row['category']; ?></b>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                                                                <div class="ms-2 me-auto">
+                                                                                                    <div class="fw-bold" style="color: #007bff;">Date</div>
+                                                                                                    <b><?php echo $row['date']; ?></b>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                                                                <div class="ms-2 me-auto">
+                                                                                                    <div class="fw-bold" style="color: #007bff;">Reason For Leaving College</div>
+                                                                                                    <b><?php echo $row['reason']; ?></b>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                        </ol>
+                                                                                    </div>
+                                                                                    <div class="modal-footer" style="justify-content: center;">
+                                                                                        <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Close</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
 
-                                    </table>
+                                                                        
+                                                                    </tr>
+                                                                <?php
+                                                                    $s++;
+                                                                };
+                                                                ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
 
+                                        </div>
+                                    </div>
 
+                                    <!-- Out Tab-->
+                                    <div class="tab-pane" id="out" role="tabpanel">
+                                        <div class="p-20">
+                                        <div class="table-responsive">
+                                                <div class="card">
+                                                    <div class="card-body" style="padding: 10px;">
+                                                        <table id="task" class="table table-striped table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>S.No</h5>
+                                                                    </th>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>Reg.No</h5>
+                                                                    </th>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>Name</h5>
+                                                                    </th>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>OutPass Details</h5>
+                                                                    </th>
+                                                                    
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                $s = 1;
+                                                                while ($row = mysqli_fetch_array($result2)) {
+                                                                ?>
+                                                                    <tr>
+                                                                        <td><?php echo $s; ?></td>
+                                                                        <td><?php echo $row['user_id']; ?></td>
+                                                                        <td><?php echo $row['name']; ?></td>
+                                                                        <td class="text-center">
+                                                                            <button type="button" class="btn viewcomplaint" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" style="font-size: 25px;">
+                                                                                <i class="fas fa-eye"></i>
+                                                                            </button>
+                                                                        </td>
+
+                                                                        <!-- Modal for Outpass Details -->
+                                                                        <div class="modal fade" id="<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="complaintDetailsModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                                                                <div class="modal-content" style="border-radius: 8px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); background-color: #f9f9f9;">
+                                                                                    <div class="modal-header" style="background-color: #007bff; color: white; padding: 15px;">
+                                                                                        <h5 class="modal-title" id="complaintDetailsModalLabel" style="font-weight: 700;">📋 Outpass Details</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body" style="padding: 15px; color: #333;">
+                                                                                        <ol class="list-group list-group-numbered">
+                                                                                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                                                                <div class="ms-2 me-auto">
+                                                                                                    <div class="fw-bold" style="color: #007bff;">Category Of Pass</div>
+                                                                                                    <b><?php echo $row['category']; ?></b>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                                                                <div class="ms-2 me-auto">
+                                                                                                    <div class="fw-bold" style="color: #007bff;">Date</div>
+                                                                                                    <b><?php echo $row['date']; ?></b>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                                                                <div class="ms-2 me-auto">
+                                                                                                    <div class="fw-bold" style="color: #007bff;">Reason For Leaving College</div>
+                                                                                                    <b><?php echo $row['reason']; ?></b>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                        </ol>
+                                                                                    </div>
+                                                                                    <div class="modal-footer" style="justify-content: center;">
+                                                                                        <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Close</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        
+                                                                    </tr>
+                                                                <?php
+                                                                    $s++;
+                                                                };
+                                                                ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
+
                         </div>
 
                     </div>
@@ -291,6 +490,9 @@ $result = mysqli_query($conn, $query);
         });
         $(document).ready(function() {
             $('#addnewtask').DataTable();
+            $('#addtask').DataTable();
+            $('#task').DataTable();
+
         });
 
         $(document).on('click', '.userapprove', function(e) {
@@ -317,7 +519,7 @@ $result = mysqli_query($conn, $query);
                                 icon: "success"
                             });
                             $('#addnewtask').load(location.href + " #addnewtask");
-                           
+
                             $('#addnewtask').DataTable().destroy();
 
                             $("#addnewtask").load(location.href + " #addnewtask > *", function() {
@@ -356,7 +558,7 @@ $result = mysqli_query($conn, $query);
                                 icon: "success"
                             });
                             $('#addnewtask').load(location.href + " #addnewtask");
-                           
+
                             $('#addnewtask').DataTable().destroy();
 
                             $("#addnewtask").load(location.href + " #addnewtask > *", function() {
