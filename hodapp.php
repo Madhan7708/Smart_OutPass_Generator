@@ -32,7 +32,7 @@
    
     <div id="main-wrapper">
         
-        <header class="topbar" data-navbarbg="skin5">
+        <header class="topbar" data-navbarbg="skin5" style="background:#25476a;">
             <nav class="navbar top-navbar navbar-expand-md ">
                 <div class="navbar-header" data-logobg="skin5">
                     <!-- This is for the sidebar toggle which is visible on mobile only -->
@@ -48,12 +48,12 @@
             </nav>
         </header>
         
-        <aside class="left-sidebar" data-sidebarbg="skin5">
+        <aside class="left-sidebar" data-sidebarbg="skin5" style="background:#25476a;">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
-                    <ul id="sidebarnav" class="p-t-30">
+                    <ul id="sidebarnav" class="p-t-30" style="background:#25476a;">
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="hodapp.php" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="hod.php" aria-expanded="false"><i class="mdi mdi-border-outside"></i><span class="hide-menu">Hod Approval</span></a></li>
                         
