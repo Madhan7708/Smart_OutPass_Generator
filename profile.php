@@ -138,35 +138,35 @@ if ($result && mysqli_num_rows($result) > 0) {
         <table style="width: 100%; font-size: 16px;">
             <tbody>
                 <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Reg.No:</td>
+                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Reg.No</td>
                     <td style="padding: 10px;"><?php echo $reg_no ?></td>
                 </tr>
                 <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Name:</td>
+                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Name</td>
                     <td style="padding: 10px;"><?php echo $name ?></td>
                 </tr>
                 <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Date Of Birth:</td>
+                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Date Of Birth</td>
                     <td style="padding: 10px;"><?php echo $dob ?></td>
                 </tr>
                 <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Department:</td>
+                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Department</td>
                     <td style="padding: 10px;"><?php echo $dept ?></td>
                 </tr>
                 <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Mentor Name:</td>
+                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Mentor Name</td>
                     <td style="padding: 10px;"><?php echo $mentorn ?></td>
                 </tr>
                 <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Father Name:</td>
+                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Father Name</td>
                     <td style="padding: 10px;"><?php echo $fname ?></td>
                 </tr>
                 <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Father No:</td>
+                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Father No</td>
                     <td style="padding: 10px;"><?php echo $fmobileno ?></td>
                 </tr>
                 <tr>
-                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Student Number:</td>
+                    <td style="padding: 10px; font-weight: bold; color: #4a4a4a;">Student Number</td>
                     <td style="padding: 10px;"><?php echo $smobileno ?></td>
                 </tr>
             </tbody>
