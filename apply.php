@@ -214,13 +214,13 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
 
                                                         <!-- Button to open the modal to view details -->
                                                         <td class="text-center">
-                                                            <button type="button" class="btn viewcomplaint" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" style="font-size: 25px;">
+                                                            <button type="button" class="btn viewcomplaint" data-toggle="modal" data-target="#display" style="font-size: 25px;" value="<?php echo $row['id']; ?>">
                                                                 <i class="fas fa-eye"></i>
                                                             </button>
                                                         </td>
 
                                                         <!-- Modal structure for displaying outpass details -->
-                                                        <div class="modal fade" id="<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="complaintDetailsModalLabel" aria-hidden="true">
+                                                        <div class="modal fade" id="display" tabindex="-1" role="dialog" aria-labelledby="complaintDetailsModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                                                 <div class="modal-content" style="border-radius: 8px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); background-color: #f9f9f9;">
 
@@ -437,6 +437,8 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
                         $('#exampleModal').modal('hide');
                         $('#outPassForm')[0].reset();
                         $('#addnewtask').load(location.href + " #addnewtask");
+                        $('.viewcomplaint').load(location.href + " .viewcomplaint");
+
 
                     } else if (res.status == 500) {
                         $('#exampleModal').modal('hide');

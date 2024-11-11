@@ -7,7 +7,7 @@ if (!isset($_SESSION['reg_no'])) {
 }
 $reg_no = $_SESSION['reg_no'];
 $query = "
-    SELECT login.user_id, student.name, student.dept, student.year,student.dob, student.mentorname,student.fname,student.fmobileno,student.smobileno
+    SELECT login.user_id, student.name, student.dept, student.year,student.dob, student.mentorname,student.fname,student.fmobileno,student.smobileno,student.images
     FROM login
     JOIN student ON login.user_id = student.user_id
     WHERE login.user_id = '$reg_no'
@@ -24,6 +24,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     $fname = $user_data['fname'];
     $fmobileno = $user_data['fmobileno'];
     $smobileno = $user_data['smobileno'];
+    $ima = $user_data['images'];
 
 
 } else {
@@ -133,6 +134,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             <div class="card" style="padding: 20px; max-width: 500px; margin: 20px auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: #f9f9f9;">
     <div class="card-body" style="text-align: center;">
         <h5 class="card-title" style="font-size: 24px; font-weight: bold; color: #4a4a4a; margin-bottom: 20px;">My Profile Information</h5>
+        <center><img src="uploads/<?php echo $ima ?>" alt="text" style="border-radius: 100%; height:100px; width:100px;"></center>
         <table style="width: 100%; font-size: 16px;">
             <tbody>
                 <tr>
