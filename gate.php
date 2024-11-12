@@ -1,7 +1,7 @@
 <?php
 include("db.php");
 //Pending tab code
-$query = "SELECT student.name,student.user_id, leaveapply.* from student JOIN leaveapply ON student.user_id=leaveapply.user_id WHERE status = '3' ";
+$query = "SELECT student.name,student.user_id,student.images, leaveapply.* from student JOIN leaveapply ON student.user_id=leaveapply.user_id WHERE status = '3' ";
 $result = mysqli_query($conn, $query);
 
 
@@ -47,6 +47,15 @@ $result = mysqli_query($conn, $query);
                 <div class="navbar-header" data-logobg="skin5">
                     <!-- This is for the sidebar toggle which is visible on mobile only -->
                     <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                    <b class="logo-icon p-l-8">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+                        </b>
+                        <span class="logo-text">
+                            <!-- dark Logo text -->
+                            <img src="assets/images/logo-text.png" alt="homepage" class="light-logo" />
+                        </span>
 
                     <!-- ============================================================== -->
                     <!-- End Logo -->
@@ -137,6 +146,9 @@ $result = mysqli_query($conn, $query);
                                                                         <h5>Name</h5>
                                                                     </th>
                                                                     <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
+                                                                        <h5>Student Images</h5>
+                                                                    </th>
+                                                                    <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
                                                                         <h5>OutPass Details</h5>
                                                                     </th>
                                                                     <th class="text-center" style="background:linear-gradient(to bottom right, #cc66ff 1%, #0033cc 100%); color:white;">
@@ -153,6 +165,8 @@ $result = mysqli_query($conn, $query);
                                                                         <td><?php echo $s; ?></td>
                                                                         <td><?php echo $row['user_id']; ?></td>
                                                                         <td><?php echo $row['name']; ?></td>
+                                                                        <td><center><img src="uploads/<?php echo $row['images'] ?>" alt="text" style="height:100px; width:100px;"></center></td>
+
                                                                         <td class="text-center">
                                                                             <button type="button" class="btn viewcomplaint" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" style="font-size: 25px;">
                                                                                 <i class="fas fa-eye"></i>
