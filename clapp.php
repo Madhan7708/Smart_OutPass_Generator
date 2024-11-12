@@ -128,7 +128,6 @@ $compcount2 = mysqli_num_rows($result2);
                     <!-- Tab panes -->
                     <div class="tab-content tabcontent-border">
 
-
                         <div class="card">
                             <div class="card-body" style="padding: 10px;">
                                 <!-- Nav tabs -->

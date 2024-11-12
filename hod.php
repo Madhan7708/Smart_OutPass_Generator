@@ -3,12 +3,15 @@ include("db.php");
 //Pending tab code
 $query = "SELECT student.name,student.user_id, leaveapply.* from student JOIN leaveapply ON student.user_id=leaveapply.user_id WHERE status = '2' ";
 $result = mysqli_query($conn, $query);
+$compcount = mysqli_num_rows($result);
 
 $query1 = "SELECT student.name,student.user_id, leaveapply.* from student JOIN leaveapply ON student.user_id=leaveapply.user_id WHERE status = '3' ";
 $result1 = mysqli_query($conn, $query1);
+$compcount1 = mysqli_num_rows($result1);
 
 $query2 = "SELECT student.name,student.user_id, leaveapply.* from student JOIN leaveapply ON student.user_id=leaveapply.user_id WHERE status = '4' ";
 $result2 = mysqli_query($conn, $query2);
+$compcount2 = mysqli_num_rows($result2);
 
 
 ?>
@@ -131,17 +134,20 @@ $result2 = mysqli_query($conn, $query2);
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" data-toggle="tab" href="#pending" role="tab">
-                                            <i class="mdi mdi-book-open"></i>Pending
+                                            <div id="navref1">
+                                            <i class="mdi mdi-book-open"></i>Pending(<?php echo $compcount ?>)</div>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#approval" role="tab">
-                                            <i class="mdi mdi-book-open"></i>Approval
+                                            <div id="navref2">
+                                            <i class="mdi mdi-book-open"></i>Approval(<?php echo $compcount1 ?>)</div>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#out" role="tab">
-                                            <i class="mdi mdi-book-open"></i>Out
+                                            <div id="navref3">
+                                            <i class="mdi mdi-book-open"></i>Out(<?php echo $compcount2 ?>)</div>
                                         </a>
                                     </li>
                                 </ul>
@@ -559,6 +565,10 @@ $result2 = mysqli_query($conn, $query2);
                                 // Reinitialize the DataTable after the content is loaded
                                 $('#addnewtask').DataTable();
                             });
+
+                            $('#navref1').load(location.href + " #navref1");
+                            $('#navref2').load(location.href + " #navref2");
+                            $('#navref3').load(location.href + " #navref3");
                         }
                     }
                 })
