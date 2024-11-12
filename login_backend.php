@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // If user exists
     if (mysqli_num_rows($result) == 1) {
         $_SESSION['reg_no'] = $reg_no; // Store faculty ID in session
-        header("Location: index.php"); // Redirect to the completedtable page
+        header("Location: index.php"); // Redirect to the completed table page
         exit();
     } else {
         // Invalid credentials
