@@ -68,7 +68,6 @@
         margin: 0;
     }
 
-    .nave ul {}
 </style>
 
 <body>

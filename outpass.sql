@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2024 at 05:49 AM
+-- Generation Time: Nov 12, 2024 at 11:29 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -68,7 +68,7 @@ CREATE TABLE `hod` (
 
 CREATE TABLE `leaveapply` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
   `category` varchar(255) NOT NULL,
   `reason` varchar(255) NOT NULL,
   `date` datetime NOT NULL,
@@ -80,12 +80,7 @@ CREATE TABLE `leaveapply` (
 --
 
 INSERT INTO `leaveapply` (`id`, `user_id`, `category`, `reason`, `date`, `status`) VALUES
-(89, 1111, 'Emergency Pass', 'bb', '2024-11-11 22:14:00', 1),
-(90, 1111, 'Emergency Pass', 'qqq', '2024-11-11 22:16:00', 1),
-(91, 1111, 'Emergency Pass', 'assddas', '2024-11-11 22:18:00', 1),
-(92, 1111, 'General Pass', 'ased', '2024-11-11 22:19:00', 1),
-(93, 1111, 'General Pass', 'asdf', '2024-11-12 10:05:00', 3),
-(94, 2222, 'General Pass', 'leaving college with lover marriages', '2024-11-12 12:30:00', 4);
+(98, '22bcs087', 'Emergency Pass', 'sxdfg', '2024-11-12 16:59:00', 1);
 
 -- --------------------------------------------------------
 
@@ -95,7 +90,7 @@ INSERT INTO `leaveapply` (`id`, `user_id`, `category`, `reason`, `date`, `status
 
 CREATE TABLE `login` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -104,8 +99,8 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id`, `user_id`, `password`) VALUES
-(1, 1111, '12345'),
-(2, 2222, '12345');
+(1, '1111', '12345'),
+(2, '22bcs087', '12345');
 
 -- --------------------------------------------------------
 
@@ -135,7 +130,7 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`id`, `Name`, `user_id`, `mentorname`, `mphoneno`, `images`, `Dob`, `Year`, `Dept`, `Fname`, `smobileno`, `fmobileno`, `place`) VALUES
 (1, 'Madhan M', '1111', 'Durai Murugan', '7826852656', '1111.jpg', '2004-11-07', 'III', 'CSBS', 'Mohan raj', '7826852656', '7708482134', 'Karur'),
-(2, 'Sakthi T S', '2222', 'Karthik K', '8778475247', '2222.jpg', '2005-10-10', 'III', 'CSE', 'YYY', '8778952656', '9952572566', 'Karur');
+(2, 'Sakthi T S', '22bcs087', 'Karthik K', '8778475247', '2222.jpg', '2005-10-10', 'III', 'CSE', 'YYY', '8778952656', '9952572566', 'Karur');
 
 --
 -- Indexes for dumped tables
@@ -203,7 +198,7 @@ ALTER TABLE `hod`
 -- AUTO_INCREMENT for table `leaveapply`
 --
 ALTER TABLE `leaveapply`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `login`

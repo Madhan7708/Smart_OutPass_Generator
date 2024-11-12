@@ -188,7 +188,7 @@ $compcount2 = mysqli_num_rows($result2);
                                                                     <tr>
                                                                         <td><?php echo $s; ?></td>
                                                                         <td><?php echo $row['user_id']; ?></td>
-                                                                        <td><?php echo $row['name']; ?></td>
+                                                                        <td><?php echo $row['name']; ?></td> 
                                                                         <td class="text-center">
                                                                             <button type="button" class="btn viewcomplaint" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" style="font-size: 25px;">
                                                                                 <i class="fas fa-eye"></i>
