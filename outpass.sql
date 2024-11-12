@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2024 at 07:45 AM
+-- Generation Time: Nov 12, 2024 at 05:49 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -80,12 +80,12 @@ CREATE TABLE `leaveapply` (
 --
 
 INSERT INTO `leaveapply` (`id`, `user_id`, `category`, `reason`, `date`, `status`) VALUES
-(15, 0, 'Emergency Pass', '', '2024-11-08 19:51:00', 5),
-(16, 0, 'Emergency Pass', 'wertyui', '2024-11-08 19:53:00', 2),
-(17, 0, 'Emergency Pass', 'completetion of exam', '2024-11-09 12:38:00', 1),
-(18, 0, 'General Pass', 'aghj', '2024-11-09 10:06:00', 1),
-(19, 0, 'Emergency Pass', 'qwerrt', '2024-11-09 10:59:00', 1),
-(20, 0, 'Emergency Pass', 'asd', '2024-11-09 12:15:00', 1);
+(89, 1111, 'Emergency Pass', 'bb', '2024-11-11 22:14:00', 1),
+(90, 1111, 'Emergency Pass', 'qqq', '2024-11-11 22:16:00', 1),
+(91, 1111, 'Emergency Pass', 'assddas', '2024-11-11 22:18:00', 1),
+(92, 1111, 'General Pass', 'ased', '2024-11-11 22:19:00', 1),
+(93, 1111, 'General Pass', 'asdf', '2024-11-12 10:05:00', 3),
+(94, 2222, 'General Pass', 'leaving college with lover marriages', '2024-11-12 12:30:00', 4);
 
 -- --------------------------------------------------------
 
@@ -119,7 +119,7 @@ CREATE TABLE `student` (
   `user_id` varchar(255) NOT NULL,
   `mentorname` varchar(255) NOT NULL,
   `mphoneno` varchar(10) NOT NULL,
-  `imgtext` varchar(255) NOT NULL,
+  `images` varchar(255) NOT NULL,
   `Dob` date NOT NULL,
   `Year` varchar(255) NOT NULL,
   `Dept` varchar(255) NOT NULL,
@@ -133,9 +133,9 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`id`, `Name`, `user_id`, `mentorname`, `mphoneno`, `imgtext`, `Dob`, `Year`, `Dept`, `Fname`, `smobileno`, `fmobileno`, `place`) VALUES
-(1, 'Madhan M', '1111', 'Durai Murugan', '7826852656', '', '2004-11-07', 'III', 'CSBS', 'Mohan raj', '7826852656', '7708482134', 'Karur'),
-(2, 'Sakthi T S', '2222', 'Karthik K', '8778475247', '', '2005-10-10', 'III', 'CSE', 'YYY', '8778952656', '9952572566', 'Karur');
+INSERT INTO `student` (`id`, `Name`, `user_id`, `mentorname`, `mphoneno`, `images`, `Dob`, `Year`, `Dept`, `Fname`, `smobileno`, `fmobileno`, `place`) VALUES
+(1, 'Madhan M', '1111', 'Durai Murugan', '7826852656', '1111.jpg', '2004-11-07', 'III', 'CSBS', 'Mohan raj', '7826852656', '7708482134', 'Karur'),
+(2, 'Sakthi T S', '2222', 'Karthik K', '8778475247', '2222.jpg', '2005-10-10', 'III', 'CSE', 'YYY', '8778952656', '9952572566', 'Karur');
 
 --
 -- Indexes for dumped tables
@@ -203,7 +203,7 @@ ALTER TABLE `hod`
 -- AUTO_INCREMENT for table `leaveapply`
 --
 ALTER TABLE `leaveapply`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `login`
