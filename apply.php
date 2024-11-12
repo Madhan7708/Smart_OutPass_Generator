@@ -79,6 +79,17 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
                 <div class="navbar-header" data-logobg="skin5">
                     <!-- This is for the sidebar toggle which is visible on mobile only -->
                     <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                    <b class="logo-icon p-l-8">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+                        </b>
+
+
+                    <span class="logo-text">
+                            <!-- dark Logo text -->
+                            <img src="assets/images/logo-text.png" alt="homepage" class="light-logo" />
+                        </span>
 
                     <!-- ============================================================== -->
                     <!-- End Logo -->
@@ -176,7 +187,7 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
 
                                         <tbody>
                                             <?php
-                                           
+
 
                                             if ($result && mysqli_num_rows($result) > 0) {
                                                 $s = 1;
@@ -214,65 +225,13 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
 
                                                         <!-- Button to open the modal to view details -->
                                                         <td class="text-center">
-                                                            <button type="button" class="btn viewcomplaint" data-toggle="modal" data-target="#display" style="font-size: 25px;" value="<?php echo $row['id']; ?>">
+                                                            <button type="button" class="btn viewcomplaint" id="outpassdisplay" data-toggle="modal" value="<?php echo $row['id']; ?>" style="font-size: 25px;">
                                                                 <i class="fas fa-eye"></i>
                                                             </button>
                                                         </td>
 
                                                         <!-- Modal structure for displaying outpass details -->
-                                                        <div class="modal fade" id="display" tabindex="-1" role="dialog" aria-labelledby="complaintDetailsModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                                                <div class="modal-content" style="border-radius: 8px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); background-color: #f9f9f9;">
 
-                                                                    <!-- Modal Header with bold title and cleaner button -->
-                                                                    <div class="modal-header" style="background-color: #007bff; color: white; border-top-left-radius: 8px; border-top-right-radius: 8px; padding: 15px;">
-                                                                        <h5 class="modal-title" id="complaintDetailsModalLabel" style="font-weight: 700; font-size: 1.4em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                                                                            📋 Outpass Details
-                                                                        </h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; font-size: 1.2em;">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-
-                                                                    <!-- Modal Body with reduced padding -->
-                                                                    <div class="modal-body" style="padding: 15px; font-size: 1.1em; color: #333; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-
-                                                                        <!-- Complaint Info Section with minimized spacing -->
-                                                                        <ol class="list-group list-group-numbered" style="margin-bottom: 0;">
-                                                                            <li class="list-group-item d-flex justify-content-between align-items-start" style="padding: 10px; background-color: #fff;">
-                                                                                <div class="ms-2 me-auto">
-                                                                                    <div class="fw-bold" style="font-size: 1.2em; font-weight: 600; color: #007bff;">Category Of Pass</div>
-                                                                                    <b><?php echo $row['category']; ?></b>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li class="list-group-item d-flex justify-content-between align-items-start" style="padding: 10px; background-color: #fff;">
-                                                                                <div class="ms-2 me-auto">
-                                                                                    <div class="fw-bold" style="font-size: 1.2em; font-weight: 600; color: #007bff;">Date</div>
-                                                                                    <b><?php echo $row['date']; ?></b>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li class="list-group-item d-flex justify-content-between align-items-start" style="padding: 10px; background-color: #fff;">
-                                                                                <div class="ms-2 me-auto">
-                                                                                    <div class="fw-bold" style="font-size: 1.2em; font-weight: 600; color: #007bff;">Reason For leave College</div>
-                                                                                    <b><?php echo $row['reason']; ?></b>
-                                                                                </div>
-                                                                            </li>
-
-
-
-
-                                                                        </ol>
-                                                                    </div>
-
-                                                                    <!-- Modal Footer with reduced padding -->
-                                                                    <div class="modal-footer" style="border-top: none; justify-content: center; padding: 10px;">
-                                                                        <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" style="border-radius: 25px; padding: 10px 30px; font-size: 1.1em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                                                                            Close
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
 
 
                                                         <!-- Action column -->
@@ -322,6 +281,45 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
+    <div class="modal fade" id="outpass" tabindex="-1" role="dialog" aria-labelledby="complaintDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content" style="border-radius: 8px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); background-color: #f9f9f9;">
+                <div class="modal-header" style="background-color: #007bff; color: white; padding: 15px;">
+                    <h5 class="modal-title" id="complaintDetailsModalLabel" style="font-weight: 700;">📋 Outpass Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="padding: 15px; color: #333;">
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold" style="color: #007bff;">Category Of Pass</div>
+                                <b><span id="categorys" style="color: #555;"></span></b>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold" style="color: #007bff;">Date</div>
+                                <b><span id="dates" style="color: #555;"></span></b>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold" style="color: #007bff;">Reason For Leaving College</div>
+                                <b><span id="reasons" style="color: #555;"></span></b>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+                <div class="modal-footer" style="justify-content: center;">
+                    <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -332,7 +330,7 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
                 </div>
                 <div class="modal-body">
 
-                    <form id="outPassForm">
+                    <form id="outForm">
 
                         <div class="mb-3">
                             <input type="hidden" id="hidden_user_id" value="<?php echo $_SESSION['reg_no']; ?>">
@@ -359,8 +357,9 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
                             <!-- Button to trigger the JavaScript function -->
                             <button type="button" class="btn btn-success" onclick="informMentor()">Tap to inform</button>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+
                         <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
                         </div>
@@ -414,10 +413,41 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
             $('#addnewtask').DataTable();
         });
 
-        $(document).on('submit', '#outPassForm', function(e) {
+        $(document).on('click', '#outpassdisplay', function(e) {
+            e.preventDefault();
+            var user_id = $(this).val(); // Retrieve the user ID from button value
+            console.log(user_id);
+
+            $.ajax({
+                type: "POST",
+                url: "back.php", // Adjust the URL to your actual backend PHP file
+                data: {
+                    'fetch_details': true,
+                    'user_id': user_id
+                },
+                success: function(response) {
+                    var res = jQuery.parseJSON(response);
+                    console.log(res);
+
+                    if (res.status == 500) {
+                        alert(res.message);
+                    } else {
+                        $("#id").val(res.data.id);
+                        $("#categorys").text(res.data.category);
+                        $("#dates").text(res.data.date);
+                        $("#reasons").text(res.data.reason);
+                        $('#outpass').modal('show'); // Show the modal directly with the fetched data
+                    }
+                }
+            });
+        });
+
+
+
+        $(document).on('submit', '#outForm', function(e) {
             e.preventDefault();
             var formData = new FormData(this);
-            formData.append("save_newuser", true);
+            formData.append("save_user", true);
             formData.append("userid", $('#user_id').val());
             formData.append("outPass", $('#outPass').val());
             formData.append("time", $('#time').val());
@@ -435,9 +465,8 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
                     if (res.status == 200) {
                         swal("Outpass Applied", "", "success");
                         $('#exampleModal').modal('hide');
-                        $('#outPassForm')[0].reset();
+                        $('#outForm')[0].reset();
                         $('#addnewtask').load(location.href + " #addnewtask");
-                        $('.viewcomplaint').load(location.href + " .viewcomplaint");
 
 
                     } else if (res.status == 500) {

@@ -2,7 +2,7 @@
 include("db.php");
 
 //raise outpass apply 
-if (isset($_POST['save_newuser'])) {
+if (isset($_POST['save_user'])) {
     try {
         $user_id = mysqli_real_escape_string($conn, $_POST['userid']);
         $outPassType = mysqli_real_escape_string($conn, $_POST['outPass']);
@@ -121,5 +121,41 @@ if (isset($_POST['update_status'])) {
         echo json_encode($res);
         return;
     }
+} 
+ // Include your database connection file here
+
+if (isset($_POST['fetch_details'])) {
+    $userid = mysqli_real_escape_string($conn, $_POST['user_id']);
+    $query = "SELECT category,reason,date FROM leaveapply WHERE id = '$userid'";
+    $query_run = mysqli_query($conn, $query);
+
+    if ($query_run) {
+        $User_data = mysqli_fetch_assoc($query_run); // Fetch associative array
+        if ($User_data) {
+            $res = [
+                'status' => 200,
+                'message' => 'Details fetched successfully by ID',
+                'data' => $User_data
+            ];
+        } else {
+            $res = [
+                'status' => 404,
+                'message' => 'No data found for this ID'
+            ];
+        }
+    } else {
+        $res = [
+            'status' => 500,
+            'message' => 'Database query failed'
+        ];
+    }
+    
+    echo json_encode($res);
+    return;
 }
 ?>
+
+
+
+
+
