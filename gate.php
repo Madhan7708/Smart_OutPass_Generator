@@ -175,7 +175,7 @@ $result = mysqli_query($conn, $query);
 
                                                                         <!-- Modal for Outpass Details -->
                                                                         <div class="modal fade" id="<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="complaintDetailsModalLabel" aria-hidden="true">
-                                                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                                                             <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                                                                 <div class="modal-content" style="border-radius: 8px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); background-color: #f9f9f9;">
                                                                                     <div class="modal-header" style="background-color: #007bff; color: white; padding: 15px;">
                                                                                         <h5 class="modal-title" id="complaintDetailsModalLabel" style="font-weight: 700;">📋 Outpass Details</h5>
